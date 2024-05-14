@@ -3,7 +3,14 @@
   <div class="my-4">
 
     <div class="card shadow-lg border-0">
-      <p-table  [value]="users" [tableStyle]="{ 'min-width': '50rem' }">
+
+      <p-iconField iconPosition="left" class="m-2 text-end rounded-5">
+        <p-inputIcon styleClass="pi pi-search" />
+        <input type="text" pInputText placeholder="Search by user id" [(ngModel)]="searchItem" />
+    </p-iconField>
+    
+
+      <p-table  [value]="users | customSearch: searchItem" [tableStyle]="{ 'min-width': '50rem' }">
         <ng-template pTemplate="header" let-columns>
           <tr>
             <th>ID</th>
