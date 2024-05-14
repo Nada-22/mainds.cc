@@ -3,7 +3,34 @@
 /* Importing Bootstrap SCSS file. */
 @import 'bootstrap/scss/bootstrap';
 @import './assets/scss/vars.scss';
+@import "primeicons/primeicons.css";
 
-.main-title{
-color: $mainColor;
+
+.main-title {
+    color: $mainTextColor;
+    font-weight: bold;
+}
+
+
+.p-datatable {
+
+    .p-datatable-thead>tr>th {
+        color: $tableTHColor !important;
+        // background-color: $tableTDBG !important;
+        border-color: $tableTHBorder !important;
+        // text-align: center !important;
+        font-weight:600;
+    }
+
+    .p-datatable-tbody>tr>td {
+        color: $tableTDColor !important;
+        // text-align: center !important;
+        border-bottom: 1px solid $tableTDBorder;
+        background-color: $tableTDBG !important;
+        padding: .6rem;
+
+        &:hover{
+            cursor: pointer;
+        }
+    }
 }

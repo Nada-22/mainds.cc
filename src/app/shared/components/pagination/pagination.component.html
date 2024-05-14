@@ -1,0 +1,5 @@
+@if (!!paginationData) {
+ 
+    <p-paginator (onPageChange)="onPageChange($event.page)" [first]="first" [rows]="paginationData.per_page"
+        [totalRecords]="paginationData.total" [pageLinkSize]="paginationData.total_pages" />
+}
