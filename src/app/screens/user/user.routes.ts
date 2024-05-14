@@ -1,0 +1,15 @@
+import { Routes } from "@angular/router";
+import { UserListComponent } from "./user-list/user-list.component";
+
+export const userRoutes: Routes = [
+    {
+        path: '',
+        redirectTo: 'list',
+        pathMatch: 'full'
+    },
+    {
+        path: 'list',
+        component: UserListComponent,
+       
+    }
+]
