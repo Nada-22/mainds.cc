@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, SimpleChanges, inject } from '@angular/core';
-import { UserItemComponent } from "./user-item/user-item.component";
 import { UserService } from '../../../shared/services/user.service';
 import { UserI } from '../../../shared/interfaces/user.interface';
 import { TableModule } from 'primeng/table';
@@ -11,6 +10,7 @@ import { InputIconModule } from 'primeng/inputicon';
 import { CustomSearchPipe } from '../../../shared/pipes/custom-search.pipe';
 import { FormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
+import { RouterModule } from '@angular/router';
 
 @Component({
     selector: 'MD-user-list',
@@ -19,7 +19,7 @@ import { InputTextModule } from 'primeng/inputtext';
     styleUrl: './user-list.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
-        UserItemComponent, TableModule,
+         TableModule,RouterModule,
         PaginationComponent, IconFieldModule,
         InputIconModule, CustomSearchPipe,
         FormsModule, InputTextModule
