@@ -6,11 +6,13 @@
 
       <p-iconField iconPosition="left" class="m-2 text-end rounded-5">
         <p-inputIcon styleClass="pi pi-search" />
-        <input type="text" pInputText placeholder="Search by user id" [(ngModel)]="searchItem" />
+        <input type="text" pInputText placeholder="Search by user id" [(ngModel)]="searchItem" 
+        (input)="searchUsers(searchItem)"/>
     </p-iconField>
     
+    @if(userState.users$();as Users) {
 
-      <p-table  [value]="users | customSearch: searchItem" [tableStyle]="{ 'min-width': '50rem' }">
+      <p-table  [value]="Users" [tableStyle]="{ 'min-width': '50rem' }">
         <ng-template pTemplate="header" let-columns>
           <tr>
             <th>ID</th>
@@ -39,6 +41,7 @@
       </p-table>
   
       <app-pagination [paginationData]="paginationData" (pageChange)="onPageChange($event)"></app-pagination>
+    }
     </div>
   </div>
 </div>

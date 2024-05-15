@@ -11,9 +11,7 @@ appState.setAppLoading(true);
     return next(req).pipe(
       
       finalize(() => {
-        setTimeout(() => {
-            console.log('1')
-            
+        setTimeout(() => {            
             appState.setAppLoading(false);
           }, 500);
         }),

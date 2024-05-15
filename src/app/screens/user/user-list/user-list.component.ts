@@ -11,6 +11,7 @@ import { CustomSearchPipe } from '../../../shared/pipes/custom-search.pipe';
 import { FormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { RouterModule } from '@angular/router';
+import { UserState } from '../../../state/user.state';
 
 @Component({
     selector: 'MD-user-list',
@@ -29,29 +30,32 @@ export class UserListComponent {
 
     cd = inject(ChangeDetectorRef);
     userService = inject(UserService);
+    userState = inject(UserState);
+
     paginationData!: PaginationDataI;
     users!: UserI[];
     page = 1;
+    perPage=6;
 
     searchItem = ''
     ngOnInit(): void {
 
         this.getUsers();
+        
     }
     getUsers() {
         this.userService.getUsers(this.page).subscribe({
             next: (res: any) => {
                 this.users = res.data;
-                console.log(this.users);
                 this.paginationData = {
                     page: res.page, total: res?.total, total_pages: res?.total_pages,
                     per_page: res?.per_page
                 };
 
+                this.userState.setUsers(this.users);
                 this.cd.detectChanges();
 
             }, error: (err: any) => {
-                console.log(err);
 
             }
         })
@@ -62,9 +66,17 @@ export class UserListComponent {
         this.getUsers();
     }
 
-    ngAfterViewInit(): void {
-
-        console.log(this.users);
+    searchUsers(value:string){
+        let newUsers=this.users.filter((data: UserI)=>{
+            return data.id.toString().includes(value);
+        });
         
+        this.paginationData = {
+            page: 1, total: newUsers.length, total_pages: Number((newUsers.length/this.perPage).toFixed(0)) || 1,
+            per_page: this.perPage
+        };
+    this.userState.setUsers(newUsers);
+    this.cd.detectChanges()
+
     }
 }

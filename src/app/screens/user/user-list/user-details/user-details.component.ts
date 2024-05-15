@@ -20,12 +20,10 @@ export class UserDetailsComponent {
   user!:UserI;
 
   ngOnInit(): void {
-    console.log(this.id);
     this.getUserDetails()
   }
   getUserDetails(){
     this.userService.getUserDetails(this.id).subscribe((data) => {
-      console.log(data);
       this.user=data.data;
       this.cd.detectChanges()
       
